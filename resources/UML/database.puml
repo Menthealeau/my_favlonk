@@ -1,0 +1,39 @@
+package database <<Database>>
+{
+    class users {
+        id:int
+        name:string
+        email:string
+        password:string
+    }
+
+    class projects {
+
+        id:int
+        title:string
+        rate:double
+    }
+
+    class category
+    {
+        id:int
+        name:string
+        id_links:int
+    }
+
+    class links
+    {
+        id:int
+        image:string
+        description:string
+        link:string
+        alias:string
+    }
+
+
+projects "One" --> "Many" category
+category "One" -> "Many" links
+users "One" -> "Many" projects
+projects "One" --> "Many" links
+
+}
