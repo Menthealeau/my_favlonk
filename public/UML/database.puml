@@ -27,7 +27,7 @@ package database <<Database>>
         image:string
         description:string
         link:string
-        alias:string
+        title:string
     }
 
 

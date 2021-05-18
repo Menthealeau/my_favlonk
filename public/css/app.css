@@ -1,0 +1,45 @@
+.card
+{
+
+}
+.section-content
+{
+    margin-top: 0;
+    background-color: hsl(0, 0%, 21%);
+    HEIGHT:100vh;
+}
+.cta
+{
+    margin-bottom: 0 !important;
+    background-color:hsl(0, 0%, 80%);
+}
+.container-content
+{
+    background-color:hsl(0, 0%, 80%);
+    padding: 30px;
+    border-radius: 20px;
+}
+.tile, .image>a>img
+{
+    border-radius: 20px;
+}
+.is-orange
+{
+    background-color: 	hsl(39,100%,50%);
+    color:white;
+}
+
+.button
+{
+    border-radius: 12px;
+}
+
+.fa-user-edit
+{
+    width:16px;
+}
+figure:hover
+{
+    background-color:red;
+
+}
