@@ -32,7 +32,7 @@
                     your many links more easily and quickly. It also allows you to retrieve useful resources from
                     other users by theme, as well as share them and vote for the best resource library for your previous
                     day.<br>
-                    <a class="has-text-info" href="{{route('link.index')}}">try it !</a>
+                    <a class="has-text-info" href="{{route('category.index')}}">try it !</a>
                 </h2>
             </div>
         </div>

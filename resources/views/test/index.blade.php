@@ -31,83 +31,104 @@
                         </div>
                     </div>
 
-            <ul class="menu-list">
-                <li class="is-right"><a href="#const" class=" menu-item is-active"><i class="fab fa-css3-alt"></i> CSS</a>
-                </li>
-                <li><a href="#let" class="menu-item"><i class="fab fa-js"></i> JS</a></li>
-                <li><a href="#let" class="menu-item"><i class="fab fa-html5"></i> HTML</a></li>
-            </ul>
-            </aside>
-        </div>
+                    <ul class="menu-list">
+                        <li class="is-right"><a href=" {{route('category.index')}} " class=" menu-item @if(!isset($id)) {{'is-active'}} @endif"> TOUS</a>
+                            @foreach ($category as $cat)
 
-        <div class="column is-10 ">
-            @if ($errors->any())
+                        <li><a href=" {{ route('category.search', ['id' => $cat->id]) }} " class="menu-item
+                        @isset($id)
+                            @if($id == $cat->id)
+                           {{'is-active'}}
+                            @endif
+                        @endisset ">
+                                {{ $cat->name }}</a></li> </a></li>
 
-            <div class="help is-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
 
-                    <li>{{ $error }}</li>
-
-                    @endforeach
-                </ul>
+                        @endforeach
+                    </ul>
+                </aside>
             </div>
 
+            <div class="column is-10 ">
+                @if ($errors->any())
 
-            @endif
-            <div class="sandbox">
-                @php
-                    $count = 0;
-                @endphp
+                    <div class="help is-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
 
-                <div class="tile is-ancestor">
-                    @foreach ( $links as $link )
-                    @if ($count <4)
+                                <li>{{ $error }}</li>
 
-                    @if(isset($linkToUpdate) && $linkToUpdate-> id == $link->id)
-                    @include ('template.templateTileUpdateLink')
-                    @else
-                    <div class="tile is-parent is-shady">
-                        <article class="tile is-child notification is-light">
-                            <div class="media">
+                            @endforeach
+                        </ul>
+                    </div>
+
+
+                @endif
+                <div class="sandbox">
+                    @php
+                        $count = 0;
+                    @endphp
+
+                    <div class="tile is-ancestor">
+                        @foreach ($links as $link)
+                            @if ($count < 4)
+
+                                @if (isset($linkToUpdate) && $linkToUpdate->id == $link->id) @include ('template.templateTileUpdateLink')
+                            @else
+                                <div class="tile is-parent is-shady">
+                                <article class="tile is-child notification is-light">
+                                <div class="media">
                                 <div class="media-left">
-                                    <p class="title">{{ $link->title }}</p>
+                                <p class="title">{{ $link->title }}</p>
                                 </div>
                                 <div class="media-content level-right">
-                                    <a href="{{ route('link.update',['id'=>$link->id])}}"><button class="button update is-link mr-2"><i class="fas fa-user-edit"></i></button></a>
-                                    <a href="{{ route('link.delete',['id'=>$link->id])}}"><button class="button is-orange"><i class="fas fa-trash-alt"></i></button></a>
+                                <a href="{{ route('link.update', ['id' => $link->id]) }}"><button
+                                class="button update is-link mr-2"><i class="fas
+                                fa-user-edit"></i></button></a>
+                                <a href="{{ route('link.delete', ['id' => $link->id]) }}"><button
+                                class="button is-orange"><i class="fas
+                                fa-trash-alt"></i></button></a>
                                 </div>
-                            </div>
-                            <div class="content mt-1">
-                                <p>{{$link->description}}</p>
-                            </div>
+                                </div>
+                                <div class="content mt-1">
+                                <p>{{ $link->description }}</p>
+                                </div>
 
-                            <figure class="image is-16by9">
-                                <a href="{{$link->link}}" target="_blank"> <img
-                                        src="{{ asset('Image/'. $link->image) }}"> </a>
-                            </figure>
-                        </article>
-                    </div>
-                    @endif
-                    @php $count++; @endphp
-                    @else
+                                <figure class="image is-16by9">
+                                <a href="{{ $link->link }}" target="_blank"> <img
+                                src="{{ asset('Image/' . $link->image) }}"> </a>
+                                </figure>
+                                </article>
+                                </div> @endif
+                                @php $count++; @endphp
+                            @else
                     </div>
                     <div class="tile is-ancestor">
-                    @php $count = 0; @endphp
-                    @endif
+                        @php $count = 0; @endphp
+                        @endif
 
 
-                    @endforeach
-                    <div id='ajout' class="tile  tile-ajout is-parent is-shady">
-                        <article class="tile is-child tile-child-ajout notification is-light">
-                            <span class="fas fa-ajout fa-plus"></span>
-                            </a>
-                        </article>
+                        @endforeach
+                        @if ($count < 4)
+                        <div id='ajout' class="tile  tile-ajout is-parent is-shady">
+                            <article class="tile is-child tile-child-ajout notification is-light">
+                                <span class="fas fa-ajout fa-plus"></span>
+                                </a>
+                            </article>
+                        </div>
+                        @else
                     </div>
+                    <div class="tile is-ancestor">
+                        <div id='ajout' class="tile  tile-ajout is-parent is-shady">
+                            <article class="tile is-child tile-child-ajout notification is-light">
+                                <span class="fas fa-ajout fa-plus"></span>
+                                </a>
+                            </article>
+                        </div>
+                    </div>
+                    @endif
                 </div>
-
             </div>
-        </div>
         </div>
     </section>
     <div class="modal" id='modal'>
@@ -117,6 +138,6 @@
 
 @push('scripts')
 
-<script src={{asset('js/modal.js')}}></script>
+    <script src={{ asset('js/modal.js') }}></script>
 
 @endpush

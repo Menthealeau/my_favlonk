@@ -1,8 +1,8 @@
 <?php
 
-use App\Models\Links;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LinksController;
+use App\Http\Controllers\CategoryController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,17 +19,16 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('test',function () {
-return view('test.index');
+Route::get('test', function () {
+    return view('test.index');
 })->name('test');
 
-Route::post('link/add',[LinksController::class,'store'])->name('link.store');
+Route::post('link/add', [LinksController::class, 'store'])->name('link.store');
+Route::get('link/delete{id}', [LinksController::class, 'delete'])->name('link.delete')->where('id', '[0-9]+');
 
-Route::get('link',[LinksController::class,'index'])->name('link.index');
+Route::get('link/update{id}', [LinksController::class, 'linkToUpdate'])->name('link.update')->where('id', '[0-9]+');
 
-Route::get('link/delete{id}',[LinksController::class,'delete'])->name('link.delete')->where('id','[0-9]+');
+Route::post('link.update', [LinksController::class, 'update'])->name('update');
 
-Route::get('link/update{id}',[LinksController::class,'linkToUpdate'])->name('link.update')->where('id','[0-9]+');
-
-Route::post('link.update',[LinksController::class,'update'])->name('update');
-
+Route::get('category', [CategoryController::class,'index'])->name('category.index');
+Route::get('category/{id}', [CategoryController::class, 'linksByCat'])->name('category.search');

@@ -2,7 +2,7 @@
     <article class="tile is-child notification is-light">
         <div class="media">
             <div class="media-left">
-                <p class="title">Change {{$linkToUpdate->title}}</p>
+                <p class="title">Update :  {{$linkToUpdate->title}}</p>
             </div>
             <div class="media-content level-right">
                 {!! Form::model($linkToUpdate, ['url' => route('update',['id'=>$link->id]),'file' => 'true','enctype' => 'multipart/form-data']) !!}
@@ -10,6 +10,12 @@
             </div>
         </div>
         <div class="content">
+            {!! Form::label('category','Category', ['class' => 'label']) !!}
+            <select name="category" id="category" class="select">
+                @foreach ($listCategory as $listcat )
+                    <option value=" {{ $listcat}} "> {{ $listcat }}</option>
+                @endforeach
+            </select>
             {!! Form::label('link', 'Link', ['class' => 'label']) !!}
             {!! Form::input('text', 'link', null, ['class' => 'input','placeholder' =>'Ex : https://www.google.com/']) !!}
             {!! Form::label('title', 'Titre', ['class' => 'label mt-2']) !!}

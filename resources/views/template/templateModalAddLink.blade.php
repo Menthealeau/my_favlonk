@@ -2,12 +2,18 @@
 <div class="modal-background"></div>
 <div class="modal-card">
     <header class="modal-card-head">
-        <p class="modal-card-title">Ajouter un lien</p>
+        <p class="modal-card-title">Add a Link</p>
         <button class="delete" id='close' aria-label="close"></button>
     </header>
     <section class="modal-card-body">
         {!! Form::open(['url' => route('link.store'),'file' => 'true','enctype' => 'multipart/form-data']) !!}
-        {!! Form::label('link', 'Link', ['class' => 'label']) !!}
+        {!! Form::label('category','Category', ['class' => 'label']) !!}
+        <select name="category" id="category" class="select">
+            @foreach ($category as $cat )
+                <option value=" {{ $cat->name}} "> {{ $cat->name }}</option>
+            @endforeach
+        </select>
+        {!! Form::label('link', 'Link', ['class' => 'label mt-2']) !!}
         {!! Form::input('text', 'link', null, ['class' => 'input','placeholder' =>'Ex : https://www.google.com/']) !!}
         {!! Form::label('title', 'Titre', ['class' => 'label mt-2']) !!}
         {!! Form::input('text', 'title', null, ['class' => 'input']) !!}

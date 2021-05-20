@@ -5,7 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class links extends Model
+class Links extends Model
 {
-    public $fillable = ['image','description','link','title'];
+    use HasFactory;
+    public $fillable = ['image','description','link','title','category_id'];
+
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
 }
